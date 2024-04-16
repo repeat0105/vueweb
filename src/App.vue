@@ -1,7 +1,7 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
+    <router-link to="/">Home</router-link> 
+    <!-- <router-link to="/about">About</router-link> |
     <router-link to="/multiplication">multiplication</router-link> |
     <router-link to="/LastWord">LastWord</router-link> |
     <router-link to="/baseball">baseball</router-link> |
@@ -9,7 +9,7 @@
     <router-link to="/rockpaper">RockPaper</router-link> |
     <router-link to="/lottonums">lottonums</router-link> |
     <router-link to="/tictactoe">TicTacToe</router-link> |
-    <router-link to="/minesweeper">minesweeper</router-link> |
+    <router-link to="/minesweeper">minesweeper</router-link> | -->
   </nav>
   <router-view />
 </template>

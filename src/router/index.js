@@ -8,6 +8,8 @@ import RockPaper from "../views/RockPaper.vue";
 import LottoNums from "../views/LottoNums.vue";
 import TicTacToe from "../views/TicTacToe.vue";
 import MineSweeper from "../views/MineSweeper.vue";
+import BoardView from "../views/BoardView.vue";
+import ReplyDetail from "../views/ReplyDetail.vue";
 
 const routes = [
   {
@@ -54,6 +56,17 @@ const routes = [
     path: "/minesweeper",
     name: "minesweeper",
     component: MineSweeper,
+  },
+
+  {
+    path: "/boardview",
+    name: "boardview",
+    component: BoardView,
+  },
+  {
+    path: "/detail/:id",
+    name: "detail",
+    component: ReplyDetail,
   },
 
   {

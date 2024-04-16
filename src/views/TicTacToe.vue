@@ -32,14 +32,14 @@
 // [0, 1, 2, 3, 4 ,12, 7, 8, 9, 10, 13, 156]
 //  0  1  2  3  4  5    6  7  8  9  10, 11,  12
 
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import store, {
   CHANGE_TURN,
   CLICK_CELL,
   NO_WINNER,
   RESET_GAME,
   SET_WINNER,
-} from "../store/index.js";
+} from "../store/modules/tictactoe";
 
 import TableComponent from "@/components/TableComponent.vue";
 
@@ -54,15 +54,18 @@ export default {
     };
   },
   computed: {
-    ...mapState(["winner", "turn", "tableData"]),
+    ...mapState("tictactoe", ["winner", "turn", "tableData"]),
 
   },
   methods: {
+    ...mapMutations("tictactoe",[CLICK_CELL,SET_WINNER,RESET_GAME,NO_WINNER,RESET_GAME,CHANGE_TURN]),
+
+
     onClickTd(rowIndex, cellIndex) {
   
       if (this.tableData[rowIndex][cellIndex]) return;
 
-      this.$store.commit(CLICK_CELL, { row: rowIndex, cell: cellIndex });
+      this.CLICK_CELL({ row: rowIndex, cell: cellIndex });
 
       let win = false;
       if (
@@ -96,8 +99,8 @@ export default {
 
       if (win) {
         // 이긴 경우: 3줄 달성
-        this.$store.commit(SET_WINNER, this.turn);
-        this.$store.commit(RESET_GAME);
+        this.SET_WINNER(this.turn);
+        this.RESET_GAME();
       } else {
         // 무승부
         let all = true; // all이 true면 무승부라는 뜻
@@ -111,10 +114,10 @@ export default {
         });
         if (all) {
           // 무승부
-          this.$store.commit(NO_WINNER);
-          this.$store.commit(RESET_GAME);
+          this.NO_WINNER();
+          this.RESET_GAME();
         } else {
-          this.$store.commit(CHANGE_TURN);
+          this.CHANGE_TURN();
         }
       }
     },

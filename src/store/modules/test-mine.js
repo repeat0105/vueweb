@@ -1,3 +1,4 @@
+// mine
 export const START_GAME = "START_GAME";
 export const OPEN_CELL = "OPEN_CELL";
 export const CLICK_MINE = "CLICK_MINE";
@@ -14,11 +15,12 @@ export const CODE = {
   QUESTION_MINE: -4,
   FLAG_MINE: -5,
   CLICKED_MINE: -6,
-  OPENED: 0, // 0 이상이면 다 opened
+  OPENED: 0, 
 };
-
+//시작시 프레임만들고 마인심는다
 const plantMine = (row, cell, mine) => {
-  console.log(row, cell, mine);
+  // console.log(row, cell, mine);
+  
   const candidate = Array(row * cell)
     .fill()
     .map((arr, i) => {
@@ -47,7 +49,7 @@ const plantMine = (row, cell, mine) => {
     data[ver][hor] = CODE.MINE;
   }
 
-  console.log(data);
+  // console.log(data);
   return data;
 };
 // export const store = new Vuex.Store({
@@ -55,8 +57,10 @@ export const testMine = {
   // import store from './store';
   namespaced: true,
   state: {
-    tableData: [],
-    data: {
+
+    // mine
+    minetableData: [],
+    minedata: {
       row: 0,
       cell: 0,
       mine: 0,
@@ -65,16 +69,21 @@ export const testMine = {
     halted: true, // 중단된
     result: "",
     openedCount: 0,
-  }, // vue의 data와 비슷
-  getters: {}, // vue의 computed와 비슷
+  },
+  getters: {
+    turnMessage(state) {
+      return state.turn + "님이 승리하셨습니다.";
+    },
+  },
   mutations: {
+    // mine
     [START_GAME](state, { row, cell, mine }) {
-      state.data = {
+      state.minedata = {
         row,
         cell,
         mine,
       };
-      state.tableData = plantMine(row, cell, mine);
+      state.minetableData = plantMine(row, cell, mine);
       state.timer = 0;
       state.halted = false;
       state.openedCount = 0;
@@ -87,9 +96,9 @@ export const testMine = {
         // 주변 8칸 지뢰인지 검색
         const checkRowOrCellIsUndefined =
           row < 0 ||
-          row >= state.tableData.length ||
+          row >= state.minetableData.length ||
           cell < 0 ||
-          cell >= state.tableData[0].length;
+          cell >= state.minetableData[0].length;
         if (checkRowOrCellIsUndefined) {
           return;
         }
@@ -100,7 +109,7 @@ export const testMine = {
             CODE.FLAG_MINE,
             CODE.QUESTION_MINE,
             CODE.QUESTION,
-          ].includes(state.tableData[row][cell])
+          ].includes(state.minetableData[row][cell])
         ) {
           return;
         }
@@ -110,22 +119,22 @@ export const testMine = {
           checked.push(row + "/" + cell);
         }
         let around = [];
-        if (state.tableData[row - 1]) {
+        if (state.minetableData[row - 1]) {
           around = around.concat([
-            state.tableData[row - 1][cell - 1],
-            state.tableData[row - 1][cell],
-            state.tableData[row - 1][cell + 1],
+            state.minetableData[row - 1][cell - 1],
+            state.minetableData[row - 1][cell],
+            state.minetableData[row - 1][cell + 1],
           ]);
         }
         around = around.concat([
-          state.tableData[row][cell - 1],
-          state.tableData[row][cell + 1],
+          state.minetableData[row][cell - 1],
+          state.minetableData[row][cell + 1],
         ]);
-        if (state.tableData[row + 1]) {
+        if (state.minetableData[row + 1]) {
           around = around.concat([
-            state.tableData[row + 1][cell - 1],
-            state.tableData[row + 1][cell],
-            state.tableData[row + 1][cell + 1],
+            state.minetableData[row + 1][cell - 1],
+            state.minetableData[row + 1][cell],
+            state.minetableData[row + 1][cell + 1],
           ]);
         }
         const counted = around.filter(function (v) {
@@ -141,27 +150,27 @@ export const testMine = {
           }
           near.push([row, cell - 1]);
           near.push([row, cell + 1]);
-          if (row + 1 < state.tableData.length) {
+          if (row + 1 < state.minetableData.length) {
             near.push([row + 1, cell - 1]);
             near.push([row + 1, cell]);
             near.push([row + 1, cell + 1]);
           }
           near.forEach((n) => {
-            if (state.tableData[n[0]][n[1]] !== CODE.OPENED) {
+            if (state.minetableData[n[0]][n[1]] !== CODE.OPENED) {
               checkAround(n[0], n[1]);
             }
           });
         }
-        if (state.tableData[row][cell] === CODE.NORMAL) {
+        if (state.minetableData[row][cell] === CODE.NORMAL) {
           openedCount += 1;
         }
-        state.tableData[row][cell] = counted.length;
+        state.minetableData[row][cell] = counted.length;
       }
       checkAround(row, cell);
       let halted = false;
       let result = "";
       if (
-        state.data.row * state.data.cell - state.data.mine ===
+        state.minedata.row * state.minedata.cell - state.minedata.mine ===
         state.openedCount + openedCount
       ) {
         halted = true;
@@ -173,32 +182,31 @@ export const testMine = {
     },
     [CLICK_MINE](state, { row, cell }) {
       state.halted = true;
-      state.tableData[row][cell] = CODE.CLICKED_MINE;
+      state.minetableData[row][cell] = CODE.CLICKED_MINE;
     },
     [FLAG_CELL](state, { row, cell }) {
-      if (state.tableData[row][cell] === CODE.MINE) {
-        state.tableData[row][cell] = CODE.FLAG_MINE;
+      if (state.minetableData[row][cell] === CODE.MINE) {
+        state.minetableData[row][cell] = CODE.FLAG_MINE;
       } else {
-        state.tableData[row][cell] = CODE.FLAG;
+        state.minetableData[row][cell] = CODE.FLAG;
       }
     },
     [QUESTION_CELL](state, { row, cell }) {
-      if (state.tableData[row][cell] === CODE.FLAG_MINE) {
-        state.tableData[row][cell] = CODE.QUESTION_MINE;
+      if (state.minetableData[row][cell] === CODE.FLAG_MINE) {
+        state.minetableData[row][cell] = CODE.QUESTION_MINE;
       } else {
-        state.tableData[row][cell] = CODE.QUESTION;
+        state.minetableData[row][cell] = CODE.QUESTION;
       }
     },
     [NORMALIZE_CELL](state, { row, cell }) {
-      if (state.tableData[row][cell] === CODE.QUESTION_MINE) {
-        state.tableData[row][cell] = CODE.MINE;
+      if (state.minetableData[row][cell] === CODE.QUESTION_MINE) {
+        state.minetableData[row][cell] = CODE.MINE;
       } else {
-        state.tableData[row][cell] = CODE.NORMAL;
+        state.minetableData[row][cell] = CODE.NORMAL;
       }
     },
     [INCREMENT_TIMER](state) {
       state.timer += 1;
     },
-    // }, // state를 수정할 때 사용해요. 동기적으로
   },
 };

@@ -17,11 +17,19 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
-import { CODE } from "../store/index.js";
+import { CODE } from "../store/modules/test-mine";
+
+import {
+  CLICK_MINE,
+  OPEN_CELL,
+  QUESTION_CELL,
+  NORMALIZE_CELL,
+  FLAG_CELL,
+} from "../store/modules/test-mine";
 
 export default {
   computed: {
-    ...mapState(["minetableData", "halted"]),
+    ...mapState("testMine", ["minetableData", "halted"]),
     cellDataStyle() {
       return (row, cell) => {
       
@@ -76,12 +84,12 @@ export default {
     },
   },
   methods: {
-    ...mapMutations([
-      "CLICK_MINE",
-      "OPEN_CELL",
-      "QUESTION_CELL",
-      "NORMALIZE_CELL",
-      "FLAG_CELL",
+    ...mapMutations("testMine", [
+      CLICK_MINE,
+      OPEN_CELL,
+      QUESTION_CELL,
+      NORMALIZE_CELL,
+      FLAG_CELL,
     ]),
     onClickTd(row, cell) {
       //게임중단시 칸클릭 못하게

@@ -10,6 +10,8 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 
+import  { INCREMENT_TIMER } from "../store/modules/test-mine";
+
 
 import MineTableComponent from "@/components/MineTableComponent.vue";
 import MineForm from "@/components/MineForm.vue";
@@ -22,10 +24,10 @@ export default {
     MineForm,
   },
   computed: {
-    ...mapState(["timer", "result", "halted"]),
+    ...mapState("testMine", ["timer", "result", "halted"]),
   },
   methods: {
-    ...mapMutations(["INCREMENT_TIMER"]),
+    ...mapMutations("testMine", [INCREMENT_TIMER]),
   },
   watch: {
     halted(value) {
