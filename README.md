@@ -2,8 +2,8 @@
 
  
 
-<img src="https://m.media-amazon.com/images/I/818AwiiJMaL.png" width="400" height="500">
-<img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png" alt="React.js Logo" width="330" height="400">
+<img src="https://m.media-amazon.com/images/I/818AwiiJMaL.png" width="300" height="400">
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png" alt="React.js Logo" width="230" height="300">
 
 :WEBGAME을 클론코딩해보고 대댓글을 구현했습니다.
 
