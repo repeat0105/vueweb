@@ -1,4 +1,5 @@
 <template>
+  <h1>틱택토 게임입니다.</h1>
   <div>
     <div :style="{ color: turn === 'X' ? '#3498db' : '#e74c3c' }">
       {{ turn }}님의 턴입니다.

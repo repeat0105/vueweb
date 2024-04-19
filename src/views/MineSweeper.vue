@@ -1,4 +1,5 @@
 <template>
+  <h1>지뢰찾기 게임입니다.</h1>
   <div>
     <MineForm />
     <div class="timetime">{{ timer }}&nbsp;초</div>

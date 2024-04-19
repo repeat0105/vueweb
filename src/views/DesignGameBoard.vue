@@ -19,22 +19,22 @@
         <div>
           
           <div v-if="game === 1">
-            <HelloWorldcopy  />
+            <MultiplicationTable  />
           </div>
           <div v-if="game === 2">
-            <ComLastWord  />
+            <LastWord  />
           </div>
           <div v-if="game === 3">
-            <ComBaseBall  />
+            <BaseBall  />
           </div>
           <div v-if="game === 4">
-            <ComReactionSpeed  />
+            <ReactionSpeed  />
           </div>
           <div v-if="game === 5">
-            <ComRockPaper  />
+            <RockPaper  />
           </div>
           <div v-if="game === 6">
-            <ComLottoNums  />
+            <LottoNums  />
           </div>
           <div v-if="game === 7">
             <TicTacToe  />
@@ -54,12 +54,12 @@
 
 <script>
 import DesignCom from '@/DesignComponents/LeftUi.vue';
-import HelloWorldcopy from '@/components/HelloWorldcopy.vue';
-import ComLastWord from '@/components/ComLastWord.vue';
-import ComBaseBall from '@/components/ComBaseBall.vue';
-import ComReactionSpeed from '@/components/ComReactionSpeed.vue';
-import ComRockPaper from '@/components/ComRockPaper.vue';
-import ComLottoNums from '@/components/ComLottoNums.vue';
+import MultiplicationTable from './MultiplicationTable.vue';
+import LastWord from './LastWord.vue';
+import BaseBall from './BaseBall.vue';
+import ReactionSpeed from './ReactionSpeed.vue';
+import RockPaper from './RockPaper.vue';
+import LottoNums from './LottoNums.vue';
 import TicTacToe from './TicTacToe.vue'
 import MineSweeper from './MineSweeper.vue'
 
@@ -68,12 +68,12 @@ import MineSweeper from './MineSweeper.vue'
     
     components: {
       DesignCom,
-      HelloWorldcopy,
-      ComLastWord,
-      ComBaseBall,
-      ComReactionSpeed,
-      ComRockPaper,
-      ComLottoNums,
+      MultiplicationTable,
+      LastWord,
+      BaseBall,
+      ReactionSpeed,
+      RockPaper,
+      LottoNums,
       TicTacToe,
       MineSweeper,
     

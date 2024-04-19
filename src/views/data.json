@@ -1,10 +1,10 @@
 [
-  { "gameid": 1, "gametitle":"구구단", "gameURL": "/multiplication"},
-  { "gameid": 2, "gametitle":"끝말잇기", "gameURL": "/lastword"},
-  { "gameid": 3, "gametitle":"숫자야구", "gameURL": "/baseball"},
-  { "gameid": 4, "gametitle":"반응속도", "gameURL": "/reactionspeed"},
-  { "gameid": 5, "gametitle":"가위바위보", "gameURL": "/rockpaper"},
-  { "gameid": 6, "gametitle":"로또", "gameURL": "/lottonums"},
-  { "gameid": 7, "gametitle":"틱택톡", "gameURL": "/tictactoe"},
-  { "gameid": 8, "gametitle":"지뢰찾기", "gameURL": "/minesweeper"}
+  { "gameid": 1, "gametitle":"구구단", "gameURL": "/multiplication", "gameimg":"../assets/image2.png"},
+  { "gameid": 2, "gametitle":"끝말잇기", "gameURL": "/lastword", "gameimg":"../assets/image3.png"},
+  { "gameid": 3, "gametitle":"숫자야구", "gameURL": "/baseball", "gameimg":"../assets/image4.png"},
+  { "gameid": 4, "gametitle":"반응속도", "gameURL": "/reactionspeed", "gameimg":"../assets/image5.png"},
+  { "gameid": 5, "gametitle":"가위바위보", "gameURL": "/rockpaper", "gameimg":"../assets/image6.png"},
+  { "gameid": 6, "gametitle":"로또", "gameURL": "/lottonums", "gameimg":"../assets/image7.png"},
+  { "gameid": 7, "gametitle":"틱택톡", "gameURL": "/tictactoe", "gameimg":"../assets/image8.png"},
+  { "gameid": 8, "gametitle":"지뢰찾기", "gameURL": "/minesweeper", "gameimg":"../assets/image9.png"}
 ]

@@ -1,4 +1,5 @@
 <template>
+  <h1>5단계 가위바위보 게임입니다.</h1>
   <div>
     <div id="computer" :style="computedStyleObject"></div>
     <div>
@@ -27,6 +28,7 @@
 </template>
 
 <script setup>
+
 import { ref, computed, onMounted, onBeforeUnmount } from "vue";
 
 const score = ref(0);
